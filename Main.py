@@ -46,6 +46,7 @@ class MovieManagement():
             sys.exit()
         else:
             print("메뉴 선택을 잘못하셨습니다. 다시 선택해 주세요.")
+    
     # 1. 영화 추가
     def add_movie(self):
         title = input("영화 제목을 입력하세요: ")
@@ -57,6 +58,7 @@ class MovieManagement():
     
         self.MovieList.append(movie)
         print(f"[입력완료] {title} 입력하신 영화가 추가되었습니다.")
+    
     # 2. 영화 조회
     def show_movies(self):
         if not self.MovieList:
@@ -87,10 +89,10 @@ class MovieManagement():
                 continue
 
             choice1 = input('''다음 중 수정하실 정보 골라주세요
-                title, tema, duration, rating, startDate
+                title, tema, running_time, rate start_date
                 (수정할 정보가 없으면 'exit' 입력): ''')
 
-            if choice1 in ('title', 'tema', 'duration', 'rating', 'startDate'):
+            if choice1 in ('title', 'tema', 'running_time', 'rate', 'start_date'):
                 self.MovieList[idx][choice1] = input('수정할 {} 을 입력하세요: '.format(choice1))
                 print("수정 완료!")
             elif choice1 == 'exit':
@@ -100,15 +102,18 @@ class MovieManagement():
 
     #4. 영화 삭제
     def deleteMovie(self):
-        print("삭제입니다 ")
+        print("삭제입니다 (종료하려면 'exit' 입력)")
+        
         while True:
             title = input('삭제하려는 영화의 영화 이름을 입력하세요 >>> ').strip()
+            if title.lower() == 'exit':
+                break
             for idx,i in enumerate(self.MovieList):
                 if i['title'] == title:
                     data = self.MovieList.pop(idx)
-                    print('{}영화의 정보가 삭제되었습니다.'.format(data['name']))
+                    print('{}영화의 정보가 삭제되었습니다.'.format(data['title']))
                     break
-                else:
+            else:
                     print('등록되지 않은 영화 이름입니다.')
                     print(self.MovieList)
         
