@@ -45,5 +45,16 @@ def updateRate(MovieList, RateList, title):
         if RateList[i]['title'] == title:
             totalRate += RateList[i]['rate']
             div += 1
-
+        else:
+            print("영화 제목을 잘 못 입력하셨습니다. 다시 입력해 주세요.")
+    
     resultRate = round(totalRate/div, 1)
+    print(resultRate)
+    for i in range(0, len(MovieList)):
+        while MovieList[i]['title'] == title:
+            MovieList[i]['rate'] = resultRate
+            break
+
+        else:
+            print("영화 제목을 잘 못 입력하셨습니다. 다시 입력해 주세요.")
+    
