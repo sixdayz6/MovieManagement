@@ -1,3 +1,5 @@
+import show_add as sa
+
 MovieList = []
 CommentList = []
 RateList = []
@@ -16,9 +18,9 @@ while True:
                    ''').upper()
     
     if choice == "C":
-        pass
+        sa.show_movies()
     elif choice == "I":
-        pass
+        sa.add_movie()
     elif choice == "D":
         pass
     elif choice == "U":
