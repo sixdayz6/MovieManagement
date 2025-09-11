@@ -2,6 +2,7 @@ MovieList = []
 CommentList = []
 RateList = []
 import sys
+import re
 
 class MovieManagement():
 
@@ -51,12 +52,24 @@ class MovieManagement():
         title = input("영화 제목을 입력하세요: ")
         tema = input("영화 테마를 입력하세요: ")
         running_time = input("상영시간을 입력하세요 (분 단위): ")
-        start_date = input("개봉일자를 입력하세요 (YYYY-MM-DD): ")
+        while True:
+            start_date = input("개봉일자를 입력하세요 (YYYY-MM-DD): ")
+            pattern = r"^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+    
+            if re.fullmatch(pattern, start_date):
+                print(f"입력 완료: {start_date}")
+                break
+            else:
+                print("잘못된 형식입니다. YYYY-MM-DD 형식으로 입력해주세요 (월 01~12, 일 01~31).")
+        
         rate = input("평점을 매겨주세요")
         movie = {"title": title, "tema": tema, "running_time": running_time, "start_date":start_date, "rate":rate}
-    
-        self.MovieList.append(movie)
-        print(f"[입력완료] {title} 입력하신 영화가 추가되었습니다.")
+        print(f"[입력완료] {title} 입력하신 영화가 추가되었습니다.")  
+        self.MovieList.append(movie)    
+            
+            
+
+
     # 2. 영화 조회
     def show_movies(self):
         if not self.MovieList:
